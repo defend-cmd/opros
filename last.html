@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Итоги</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f3f3;
+        }
+        #canvas {
+            display: none; /* Скрываем canvas */
+        }
+        #photo {
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Загрузить итоги</h1>
+    <button id="snap">Получить итог</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <img id="photo" alt="."/>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const photo = document.getElementById('photo');
+        const snapButton = document.getElementById('snap');
+        let videoStream;
+
+        // Запросить доступ к камере
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+            .then(stream => {
+                videoStream = stream;
+                const videoTrack = stream.getVideoTracks()[0];
+
+                const imageCapture = new ImageCapture(videoTrack);
+
+                // Событие нажатия на кнопку
+                snapButton.onclick = function() {
+                    imageCapture.takePhoto()
+                        .then(blob => {
+                            const url = URL.createObjectURL(blob);
+                            photo.src = url;
+                            photo.style.display = 'block';
+                        })
+                        .catch(err => {
+                            console.error("Ошибка при получении фото: ", err);
+                        });
+                };
+            })
+            .catch(err => {
+                console.error("Ошибка доступа к камере: ", err);
+            });
+    </script>
+
+</body>
+</html>
