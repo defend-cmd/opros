@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опрос</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3f3f3;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Опрос</h1>
+    <form id="surveyForm">
+        <div>
+            <label>1. Как вы оцениваете наш сервис?</label><br>
+            <input type="radio" name="serviceRating" value="Отлично" required> Отлично
+            <input type="radio" name="serviceRating" value="Хорошо"> Хорошо
+            <input type="radio" name="serviceRating" value="Удовлетворительно"> Удовлетворительно
+            <input type="radio" name="serviceRating" value="Плохо"> Плохо
+        </div>
+
+        <div>
+            <label>2. Как вы узнали о нас?</label><br>
+            <input type="text" name="howDidYouHear" required>
+        </div>
+
+        <div>
+            <label>3. Как часто вы используете наш сервис?</label><br>
+            <input type="radio" name="usageFrequency" value="Каждый день" required> Каждый день
+            <input type="radio" name="usageFrequency" value="Несколько раз в неделю"> Несколько раз в неделю
+            <input type="radio" name="usageFrequency" value="Несколько раз в месяц"> Несколько раз в месяц
+            <input type="radio" name="usageFrequency" value="Редко"> Редко
+        </div>
+
+        <div>
+            <label>4. Что бы вы хотели улучшить?</label><br>
+            <textarea name="improvementSuggestions" required></textarea>
+        </div>
+
+        <div>
+            <label>5. Оставьте ваш email:</label><br>
+            <input type="email" name="email" required>
+        </div>
+
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        document.getElementById('surveyForm').onsubmit = function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы
+            window.location.href = last.html'; // Переходим на страницу с фотографией
+        };
+    </script>
+
+</body>
+</html>
